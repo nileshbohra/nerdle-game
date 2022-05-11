@@ -92,3 +92,10 @@
   justify-content: center;
   padding: 5px 0px;
 }
+
+@media only screen and (max-width: 600px) {
+  .letter {
+    width: 34px;
+    height: 30px;
+  }
+}
