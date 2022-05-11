@@ -24,10 +24,15 @@ Nerdle is the new Wordle-inspired game in town that allows you to play Wordle bu
 
 Guess the NERDLE in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the solution.
 
-Indicators
-green: correct guess
-purple: guess is present but not in correct position
-black: guess is not present in the equation
+## Deployment
+
+The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
+
+### Indicators
+
+- green: correct guess
+- purple: guess is present but not in correct position
+- black: guess is not present in the equation
 
 ## Rules
 
@@ -47,6 +52,10 @@ If the answer we're looking for is 10+20=30, then we will accept 20+10=30 too (u
 - ### Dark Mode
 
 <img src='sampleImages/dark-mode.png' rel='dark-mode-img' width=400 height=400 />
+
+- ### Game Modes
+  - mini : with 6 rows and 5 columns
+  - classic : with 6 rows and 8 columns
 
 ## Future Milestones
 
