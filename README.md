@@ -24,10 +24,6 @@ Nerdle is the new Wordle-inspired game in town that allows you to play Wordle bu
 
 Guess the NERDLE in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the solution.
 
-## Deployment
-
-The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
-
 ### Indicators
 
 - green: correct guess
@@ -64,3 +60,7 @@ If the answer we're looking for is 10+20=30, then we will accept 20+10=30 too (u
 - ### account creation
   - by creating account users can send custom equation challenge to friends and family
   - players can also keep track of their stats
+
+## Deployment
+
+The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
