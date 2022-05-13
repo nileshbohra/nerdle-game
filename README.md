@@ -1,6 +1,6 @@
 # Demo
 
-## On Local environment
+- ## On Local environment
 
 You can clone the repo on to your system then run the `npm install` command to install dependencies.
 
@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-## Live Project
+- ## Live Project
 
 The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
 
@@ -30,11 +30,11 @@ Nerdle is the new Wordle-inspired game in town that allows you to play Wordle bu
 
 Guess the NERDLE in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the solution.
 
-### Indicators
+- ### Indicators
 
-- green: correct guess
-- purple: guess is present but not in correct position
-- black: guess is not present in the equation
+  - green: correct guess
+  - purple: guess is present but not in correct position
+  - black: guess is not present in the equation
 
 ## Rules
 
