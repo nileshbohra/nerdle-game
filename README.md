@@ -53,7 +53,7 @@ If the answer we're looking for is 10+20=30, then we will accept 20+10=30 too (u
 
 - ### Dark Mode
 
-<img src='sampleImages/dark-mode.png' rel='dark-mode-img' width=500 height=350 />
+<img src='sampleImages/dark-mode.png' rel='dark-mode-img' width=400 height=400 />
 
 - ### Game Modes
   - mini : with 6 rows and 5 columns
