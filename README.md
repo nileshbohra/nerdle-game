@@ -1,8 +1,10 @@
-# For Developers
+# Demo
+
+## On Local environment
 
 You can clone the repo on to your system then run the `npm install` command to install dependencies.
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -13,6 +15,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+## Live Project
+
+The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
 
 # nerdle game
 
@@ -60,7 +66,3 @@ If the answer we're looking for is 10+20=30, then we will accept 20+10=30 too (u
 - ### account creation
   - by creating account users can send custom equation challenge to friends and family
   - players can also keep track of their stats
-
-## Deployment
-
-The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
