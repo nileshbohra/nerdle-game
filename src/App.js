@@ -42,15 +42,18 @@ const App = () => {
   };
 
   const handleMessage = (message, msgType) => {
-    if (msgType === 'error') {
-      setMsgIsError(true);
-    } else {
+    if (msgType === 'success') {
       setMsgIsError(false);
+    } else {
+      setMsgIsError(true);
     }
     setMessage(message);
-    setTimeout(() => {
-      setMessage(null);
-    }, 5000);
+    if (msgType === 'error') {
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
+    }
+
   };
 
 
@@ -113,7 +116,7 @@ const App = () => {
       handleMessage('🎉YOU WON', 'success');
     } else if (rowIndex + 1 === 6) {
       status = 'LOST';
-      handleMessage('You Lost, the correct calculation was : ' + boardData.solution, 'error');
+      handleMessage('You Lost, the correct calculation was : ' + boardData.solution, 'lose');
     }
     boardRowStatus.push(rowStatus);
     boardWords[rowIndex] = equation;
@@ -214,7 +217,7 @@ const App = () => {
           </button>
         </div>
       </div>
-
+      <br /> <br />
       {message && <div className="message" style={msgIsError ? nerdleConfig.theme.msgColor.error : nerdleConfig.theme.msgColor.success}>{message}</div>}
       {col && (
         <>
