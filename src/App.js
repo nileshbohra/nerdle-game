@@ -19,9 +19,12 @@ const App = () => {
   //this is for column blocks
   const [colArr, setColArr] = useState([0, 1, 2, 3, 4, 5, 6, 7]);
 
+  useEffect(() => {
+    setupgame();
+  }, []);
+
   const setupgame = (colNo) => {
     const boardCol = colNo || col;
-
     //this will store random equation from equationlist according to board column lenght.
     var eqIndex = Math.floor(Math.random() * equationList[boardCol].length);
     let newBoardData = {
@@ -37,9 +40,6 @@ const App = () => {
     };
     setBoardData(newBoardData);
   };
-  useEffect(() => {
-    setupgame();
-  }, []);
 
   const handleMessage = (message, msgType) => {
     if (msgType === 'error') {
@@ -54,7 +54,7 @@ const App = () => {
   };
 
 
-  const enterBoardWord = (equation) => {
+  const checkEquation = (equation) => {
     let boardWords = boardData.boardWords;
     let boardRowStatus = boardData.boardRowStatus;
     let solution = boardData.solution;
@@ -66,31 +66,47 @@ const App = () => {
     let matchCount = 0;
     let status = boardData.status;
 
-    // console.log(trimSolution);
-    for (var index = 0; index < equation.length; index++) {
+    //code from imKennyYip
+    let correct = 0;
+
+    let letterCount = {}; //keep track of letter frequency, ex) KENNY -> {K:1, E:1, N:2, Y: 1}
+    for (let i = 0; i < solution.length; i++) {
+      let letter = solution[i];
+      if (letterCount[letter]) {
+        letterCount[letter] += 1;
+      }
+      else {
+        letterCount[letter] = 1;
+      }
+    }
+
+    //first iteration, check all the correct ones first
+    for (var index = 0; index < solution.length; index++) {
       if (solution.charAt(index) === equation.charAt(index)) {
         matchCount++;
         rowStatus.push('correct');
-        if (!correctCharArray.includes(equation.charAt(index)))
-          correctCharArray.push(equation.charAt(index));
-        if (presentCharArray.indexOf(equation.charAt(index)) !== -1)
-          presentCharArray.splice(
-            presentCharArray.indexOf(equation.charAt(index)),
-            1
-          );
-      } else if (solution.includes(equation.charAt(index))) {
-        rowStatus.push('present');
-        if (
-          !correctCharArray.includes(equation.charAt(index)) &&
-          !presentCharArray.includes(equation.charAt(index))
-        )
-          presentCharArray.push(equation.charAt(index));
+        correct += 1;
+        letterCount[equation.charAt(index)] -= 1;
+        correctCharArray.push(equation.charAt(index));
       } else {
-        rowStatus.push('absent');
-        if (!absentCharArray.includes(equation.charAt(index)))
-          absentCharArray.push(equation.charAt(index));
+        rowStatus.push('checking');
       }
     }
+    //go again and mark which ones are present but in wrong position
+    for (let index = 0; index < solution.length; index++) {
+      if (rowStatus[index] !== 'correct') {
+        console.log(rowStatus[index]);
+        if (solution.includes(equation.charAt(index)) && letterCount[equation.charAt(index)] > 0) {
+          rowStatus[index] = 'present';
+          letterCount[equation.charAt(index)] -= 1;
+          presentCharArray.push(equation.charAt(index));
+        } else {
+          rowStatus[index] = 'absent';
+          absentCharArray.push(equation.charAt(index));
+        }
+      }
+    }
+
     //checks if the equation is correct
     if (matchCount === parseInt(col)) {
       status = 'WIN';
@@ -147,7 +163,7 @@ const App = () => {
         if (!(evaluate(expression) === parseInt(eqResult))) {
           handleMessage("That guess doesn't compute!", 'error');
         } else {
-          enterBoardWord(equation);
+          checkEquation(equation);
           setEquationArray([]);
         }
       } else {
