@@ -2,13 +2,12 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
   align-items: center;
 }
 .message {
   position: absolute;
-  top: 18%;
+  top: 10%;
   padding: 10px 20px;
   border-radius: 10px;
   color: #fff;
@@ -34,7 +33,7 @@
 .cube {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 .letter {
   text-transform: uppercase;
@@ -48,7 +47,7 @@
   height: 50px;
   background-color: #989484;
   color: white;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .reset-board {
@@ -95,7 +94,14 @@
 
 @media only screen and (max-width: 600px) {
   .letter {
-    width: 34px;
-    height: 30px;
+    width: 40px;
+    height: 35px;
+  }
+
+  .reset-board {
+    font-size: 12px;
+  }
+  .message {
+    font-size: large;
   }
 }

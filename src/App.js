@@ -48,12 +48,11 @@ const App = () => {
       setMsgIsError(true);
     }
     setMessage(message);
-    if (msgType === 'error') {
-      setTimeout(() => {
-        setMessage(null);
-      }, 5000);
-    }
-
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
+    // if (msgType === 'error') {
+    // }
   };
 
 
@@ -72,7 +71,7 @@ const App = () => {
     //code from imKennyYip
     let correct = 0;
 
-    let letterCount = {}; //keep track of letter frequency, ex) KENNY -> {K:1, E:1, N:2, Y: 1}
+    let letterCount = {}; //keep track of letter frequency, ex) KENNY -> {0:1, 2:1, +:2, =: 1}
     for (let i = 0; i < solution.length; i++) {
       let letter = solution[i];
       if (letterCount[letter]) {
@@ -217,7 +216,6 @@ const App = () => {
           </button>
         </div>
       </div>
-      <br /> <br />
       {message && <div className="message" style={msgIsError ? nerdleConfig.theme.msgColor.error : nerdleConfig.theme.msgColor.success}>{message}</div>}
       {col && (
         <>

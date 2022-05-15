@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .row {
   display: flex;
@@ -14,12 +14,16 @@
   padding: 0 10px;
 }
 
+.row > button {
+  font-weight: 800;
+}
+
 button {
   border-radius: 5px;
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
   background: #d3d6da;
-  padding: 22px 18px;
+  padding: 18px 17px;
   border: none;
   text-transform: uppercase;
 }
@@ -36,4 +40,10 @@ button {
 .key-absent {
   background: #161803;
   color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  button {
+    padding: 14px 11px;
+  }
 }
