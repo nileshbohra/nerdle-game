@@ -1,6 +1,6 @@
 # Demo
 
-- ## On Local environment
+## On Local environment
 
 You can clone the repo on to your system then run the `npm install` command to install dependencies.
 
@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-- ## Live Project
+## Live Project
 
 The Live project is hosted on netlify <a href='https://nerdle-game.netlify.app/'>here</a>
 
