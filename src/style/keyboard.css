@@ -11,7 +11,8 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
+  /* padding: 2vw; */
 }
 
 .row > button {
@@ -23,7 +24,8 @@ button {
   /* font-weight: bold; */
   cursor: pointer;
   background: #d3d6da;
-  padding: 18px 17px;
+  /* padding: 18px 17px; */
+  padding: 1.4vw;
   border: none;
   text-transform: uppercase;
 }
@@ -43,7 +45,7 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
-  button {
+  /* button {
     padding: 14px 11px;
-  }
+  } */
 }
