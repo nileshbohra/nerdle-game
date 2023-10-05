@@ -45,12 +45,12 @@
   align-items: center;
   justify-content: center;
   /* font-size: 28px; */
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 500;
   /* width: 55px;
   height: 50px; */
-  width: 4.3vw;
-  height: 3.8vw;
+  width: 4vw;
+  height: 3.5vw;
   background-color: #989484;
   color: white;
   border-radius: 3px;
@@ -61,7 +61,7 @@
   background-color: dodgerblue;
   color: white;
   /* font-size: 18px; */
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   margin-left: 20px;
 }
 
