@@ -25,7 +25,8 @@ button {
   cursor: pointer;
   background: #d3d6da;
   /* padding: 18px 17px; */
-  padding: 1.4vw;
+  font-size: 1vw;
+  padding: 1.3vw;
   border: none;
   text-transform: uppercase;
 }
