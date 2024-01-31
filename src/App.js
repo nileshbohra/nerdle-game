@@ -97,7 +97,6 @@ const App = () => {
     //go again and mark which ones are present but in wrong position
     for (let index = 0; index < solution.length; index++) {
       if (rowStatus[index] !== 'correct') {
-        console.log(rowStatus[index]);
         if (solution.includes(equation.charAt(index)) && letterCount[equation.charAt(index)] > 0) {
           rowStatus[index] = 'present';
           letterCount[equation.charAt(index)] -= 1;
@@ -199,13 +198,18 @@ const App = () => {
   };
 
   const handleTheme = () => {
-    setIsDark(preVal => { console.log(preVal); return !preVal });
+    setIsDark(preVal => { return !preVal });
+  }
+
+  const getModeName = (col) => {
+    col = parseInt(col);
+    return Object.keys(nerdleConfig.modes).find(key => nerdleConfig.modes[key] === col);
   }
 
   return (
     <div className="container" style={isDark ? nerdleConfig.theme.dark : nerdleConfig.theme.default}>
       <div className="top">
-        <div className="title" style={isDark ? { color: 'white' } : null}>nerdle. {col === '5' && 'mini'}</div>
+        <div className="title" style={isDark ? { color: 'white' } : null}>nerdle. {getModeName(col)}</div>
         <div className="setting">
           <ModeSelect setCol={setCol} setColArr={setColArr} setupgame={setupgame} col={col} />
           <button className="reset-board" onClick={() => setupgame()}>
