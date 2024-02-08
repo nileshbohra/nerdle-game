@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Keyboard from './components/Keyboard';
-import {evaluate} from 'mathjs';
+import { evaluate } from 'mathjs';
 import ModeSelect from './components/ModeSelect';
 import Board from './components/Board';
 
@@ -149,7 +149,6 @@ const App = () => {
     let expression = ''; // will store expression 
     let eqResult = '';
     if (equationArray.length === parseInt(col)) {
-      let equation = equationArray.join('').toLowerCase();
       if (equationArray.includes('=')) {
         for (let i = 0; i < equationArray.length; i++) {
           let number = equationArray[i]
@@ -162,6 +161,7 @@ const App = () => {
             break;
           } else {
             //store expression on left side of '=' sign
+            if (number === '\u2212') number = '-';
             expression = expression + number;
           }
         }
@@ -194,7 +194,8 @@ const App = () => {
     } else if (key === '⌫' || key === 'BACKSPACE') {
       onDelete();
     } else if (equationArray.length < col) {
-      if (isNaN(key) && key !== ['+', '-', '/', '*', '=', '(', ')', '^2', '^3'].find(val => val === key)) return;
+      if (isNaN(key) && key !== ['+', '\u2212', '-', '/', '*', '=', '(', ')', '^2', '^3'].find(val => val === key)) return;
+      if (key === '-') key = '\u2212';
       equationArray.push(key);
       setEquationArray([...equationArray]);
     }
