@@ -5,7 +5,7 @@
   align-items: center;
   margin-top: 10px;
 }
-.row {
+.keyBoardRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -15,33 +15,39 @@
   /* padding: 2vw; */
 }
 
-.row > button {
-  font-weight: 800;
+.keyBoardRow > div {
+  font-weight: 700;
 }
 
-button {
+.keyBoardArithmeticRow {
+  font-weight: 800 !important;
+  font-size: 1.3vw !important;
+}
+
+.nBtn {
   border-radius: 5px;
   /* font-weight: bold; */
   cursor: pointer;
   background: #d3d6da;
   /* padding: 18px 17px; */
-  font-size: 1vw;
+  font-size: 1.3vw;
   padding: 1.3vw;
   border: none;
   text-transform: uppercase;
 }
+
 .key-correct {
-  background: #398874;
+  background: #398874 !important;
   color: #fff;
 }
 
 .key-present {
-  background: #820458;
+  background: #820458 !important;
   color: #fff;
 }
 
 .key-absent {
-  background: #161803;
+  background: #161803 !important;
   color: #fff;
 }
 

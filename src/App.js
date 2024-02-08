@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Keyboard from './components/Keyboard';
-import { evaluate } from 'mathjs';
+import {evaluate} from 'mathjs';
 import ModeSelect from './components/ModeSelect';
 import Board from './components/Board';
 
@@ -68,28 +68,32 @@ const App = () => {
     let matchCount = 0;
     let status = boardData.status;
 
-    //code from imKennyYip
     let correct = 0;
 
-    let letterCount = {}; //keep track of letter frequency, ex) KENNY -> {0:1, 2:1, +:2, =: 1}
+    let letterCount = {}; //keep track of character frequency, ex) KENNY -> {0:1, 2:1, +:2, =: 1}
     for (let i = 0; i < solution.length; i++) {
-      let letter = solution[i];
-      if (letterCount[letter]) {
-        letterCount[letter] += 1;
+      let character = solution[i];
+      if (letterCount[character]) {
+        letterCount[character] += 1;
       }
       else {
-        letterCount[letter] = 1;
+        letterCount[character] = 1;
       }
     }
 
     //first iteration, check all the correct ones first
     for (var index = 0; index < solution.length; index++) {
-      if (solution.charAt(index) === equation.charAt(index)) {
+      if (equation[index] === '^2') {
+        equation[index] = '²';
+      } else if (equation[index] === '^3') {
+        equation[index] = '³';
+      }
+      if (solution.charAt(index) === equation[index]) {
         matchCount++;
         rowStatus.push('correct');
         correct += 1;
-        letterCount[equation.charAt(index)] -= 1;
-        correctCharArray.push(equation.charAt(index));
+        letterCount[equation[index]] -= 1;
+        correctCharArray.push(equation[index]);
       } else {
         rowStatus.push('checking');
       }
@@ -97,14 +101,13 @@ const App = () => {
     //go again and mark which ones are present but in wrong position
     for (let index = 0; index < solution.length; index++) {
       if (rowStatus[index] !== 'correct') {
-        console.log(rowStatus[index]);
-        if (solution.includes(equation.charAt(index)) && letterCount[equation.charAt(index)] > 0) {
+        if (solution.includes(equation[index]) && letterCount[equation[index]] > 0) {
           rowStatus[index] = 'present';
-          letterCount[equation.charAt(index)] -= 1;
-          presentCharArray.push(equation.charAt(index));
+          letterCount[equation[index]] -= 1;
+          presentCharArray.push(equation[index]);
         } else {
           rowStatus[index] = 'absent';
-          absentCharArray.push(equation.charAt(index));
+          absentCharArray.push(equation[index]);
         }
       }
     }
@@ -132,7 +135,7 @@ const App = () => {
     setBoardData(newBoardData);
   };
 
-  //this will be call everytime player enters a number in equatoin
+  //this will be call everytime player enters a number in equation
   const enterCurrentText = (equation) => {
     let boardWords = boardData.boardWords;
     let rowIndex = boardData.rowIndex;
@@ -165,7 +168,7 @@ const App = () => {
         if (!(evaluate(expression) === parseInt(eqResult))) {
           handleMessage("That guess doesn't compute!", 'error');
         } else {
-          checkEquation(equation);
+          checkEquation(equationArray);
           setEquationArray([]);
         }
       } else {
@@ -191,29 +194,34 @@ const App = () => {
     } else if (key === '⌫' || key === 'BACKSPACE') {
       onDelete();
     } else if (equationArray.length < col) {
-      if (isNaN(key) && key !== ['+', '-', '/', '*', '='].find(val => val === key)) return;
+      if (isNaN(key) && key !== ['+', '-', '/', '*', '=', '(', ')', '^2', '^3'].find(val => val === key)) return;
       equationArray.push(key);
       setEquationArray([...equationArray]);
     }
-    enterCurrentText(equationArray.join('').toLowerCase());
+    enterCurrentText(equationArray);
   };
 
   const handleTheme = () => {
-    setIsDark(preVal => { console.log(preVal); return !preVal });
+    setIsDark(preVal => { return !preVal });
+  }
+
+  const getModeName = (col) => {
+    col = parseInt(col);
+    return Object.keys(nerdleConfig.modes).find(key => nerdleConfig.modes[key] === col);
   }
 
   return (
     <div className="container" style={isDark ? nerdleConfig.theme.dark : nerdleConfig.theme.default}>
       <div className="top">
-        <div className="title" style={isDark ? { color: 'white' } : null}>nerdle. {col === '5' && 'mini'}</div>
+        <div className="title" style={isDark ? { color: 'white' } : null}>nerdle. {getModeName(col)}</div>
         <div className="setting">
           <ModeSelect setCol={setCol} setColArr={setColArr} setupgame={setupgame} col={col} />
-          <button className="reset-board" onClick={() => setupgame()}>
+          <div className="reset-board nBtn" style={{ backgroundColor: "dodgerblue" }} onClick={() => setupgame()}>
             Play again
-          </button>
-          <button className="reset-board" style={isDark ? nerdleConfig.theme.default : nerdleConfig.theme.dark} onClick={() => handleTheme()}>
+          </div>
+          <div className="nBtn reset-board" style={isDark ? nerdleConfig.theme.default : nerdleConfig.theme.dark} onClick={() => handleTheme()}>
             {isDark ? 'go light 🔆' : 'go dark 🌙'}
-          </button>
+          </div>
         </div>
       </div>
       {message && <div className="message" style={msgIsError ? nerdleConfig.theme.msgColor.error : nerdleConfig.theme.msgColor.success}>{message}</div>}

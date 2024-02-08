@@ -1,4 +1,5 @@
 import React from 'react'
+import nerdleConfig from '../nerdle.config';
 
 export default function ModeSelect({ col, setCol, setColArr, setupgame }) {
     const handleChange = (event) => {
@@ -11,8 +12,11 @@ export default function ModeSelect({ col, setCol, setColArr, setupgame }) {
     };
     return (
         <select value={col} onChange={handleChange} placeholder="Select rows">
-            <option value={5}>mini</option>
-            <option value={8}>classic</option>
+            {Object.keys(nerdleConfig.modes).map((mode) => (
+                <option key={mode} value={nerdleConfig.modes[mode]}>
+                    {mode}
+                </option>
+            ))}
         </select>
     )
 }
