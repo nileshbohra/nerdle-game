@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Keyboard from './components/Keyboard';
-import { evaluate } from 'mathjs';
+import { evaluate, log } from 'mathjs';
 import ModeSelect from './components/ModeSelect';
 import Board from './components/Board';
 
@@ -131,7 +131,7 @@ const App = () => {
     setBoardData(newBoardData);
   };
 
-  //this will be call everytime player enters a number in equatoin
+  //this will be call everytime player enters a number in equation
   const enterCurrentText = (equation) => {
     let boardWords = boardData.boardWords;
     let rowIndex = boardData.rowIndex;
@@ -190,11 +190,11 @@ const App = () => {
     } else if (key === '⌫' || key === 'BACKSPACE') {
       onDelete();
     } else if (equationArray.length < col) {
-      if (isNaN(key) && key !== ['+', '-', '/', '*', '='].find(val => val === key)) return;
+      if (isNaN(key) && key !== ['+', '-', '/', '*', '=', '(', ')', '²', '³'].find(val => val === key)) return;
       equationArray.push(key);
       setEquationArray([...equationArray]);
     }
-    enterCurrentText(equationArray.join('').toLowerCase());
+    enterCurrentText(equationArray);
   };
 
   const handleTheme = () => {
